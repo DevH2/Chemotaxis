@@ -2,7 +2,8 @@
 int starSize = 0;
 final int SCREEN_WIDTH = 500, SCREEN_HEIGHT = 500;
 class Stardust {
-  int x,y,col,size;
+  int col,size;
+  float theta,x,y ;
   double velocity;
   Stardust(int size, double velocity){
     this.velocity = velocity;
@@ -11,6 +12,13 @@ class Stardust {
     this.y = (int)(Math.random()*SCREEN_HEIGHT);
     this.col = color((int)(Math.random()*256)+1,(int)(Math.random()*256)+1,(int)(Math.random()*256)+1);
   }
+  /*void orbit(){
+   / this.theta+= 10;
+   / this.x = 10.0*cos( theta );
+   / this.y = 10.0*sin( theta );
+   / translate( width /2, height/2);
+   / }
+   */
   void arract(){
     if(this.x< SCREEN_WIDTH/2){
       this.x += (int)(Math.random()*7)+velocity;
@@ -45,7 +53,7 @@ Stardust[] stardust;
 void setup(){
   //colorMode(HSB);
   bg = loadImage("catseye_w112.jpg");
-  frameRate(30);
+  frameRate(20);
   stardust = new Stardust[400];
   size(500,500);
   for(int i = 0; i<stardust.length;i++){
@@ -58,6 +66,7 @@ void draw(){
   for(int i = 0; i<stardust.length;i++){
     stardust[i].show();
     stardust[i].arract();
+    //stardust[i].orbit();
     stardust[i].expandStar();
   }
   fill(51,171,249);
